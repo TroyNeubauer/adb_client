@@ -250,6 +250,10 @@ impl ADBUSBDevice {
         if message.header().command() == MessageCommand::Cnxn {
             return Ok(());
         }
+        if message.header().command() == MessageCommand::Okay {
+            log::info!("Device in OKAY state. Skipping auth");
+            return Ok(());
+        }
         message.assert_command(MessageCommand::Auth)?;
 
         // At this point, we should have receive an AUTH message with arg0 == 1
