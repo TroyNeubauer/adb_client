@@ -298,6 +298,10 @@ impl ADBDeviceExt for ADBUSBDevice {
     fn framebuffer_inner(&mut self) -> Result<image::ImageBuffer<image::Rgba<u8>, Vec<u8>>> {
         self.inner.framebuffer_inner()
     }
+
+    fn install_from_bytes(&mut self, apk_bytes: &[u8]) -> Result<()> {
+        self.inner.install_from_bytes(apk_bytes)
+    }
 }
 
 impl Drop for ADBUSBDevice {
